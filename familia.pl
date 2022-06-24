@@ -1,5 +1,3 @@
-hoje(data(10, junho, 2022)).
-
 pai(homer, bart).
 pai(homer, lisa).
 pai(homer, maggie).
@@ -42,3 +40,9 @@ tio(X, Y) :- irmao(X, Z), mae(Z, Y).
 primo(X, Y) :- pai(Z, X), pai(W, Y), irmao(Z, W).
 primo(X, Y) :- pai(Z, X), mae(W, Y), irmao(Z, W).
 primo(X, Y) :- mae(Z, X), mae(W, Y), irmao(Z, W).
+primo(X, Y) :- mae(Z, X), pai(W, Y), irmao(Z, W).
+
+neto(X, Y) :- pai(Y, Z), pai(Z, X).
+neto(X, Y) :- mae(Y, Z), pai(Z, X).
+neto(X, Y) :- pai(Y, Z), mae(Z, X).
+neto(X, Y) :- mae(Y, Z), mae(Z, X).
