@@ -28,6 +28,7 @@ avoh_paterna(X, Y) :- mae(X, Z), pai(Z, Y).
 avoh_materna(X, Y) :- mae(X, Z), mae(Z, Y).
 
 irmao(X, Y) :- pai(Z, X), pai(Z, Y), X \= Y.
+irmao(X, Y) :- mae(Z, X), mae(Z, Y), X \= Y.
 
 tem_filho(X) :- pai(X, _).
 tem_filho(X) :- mae(X, _).
