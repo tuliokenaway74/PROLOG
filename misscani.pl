@@ -110,17 +110,17 @@ resolva :-
 % Especificacao da quarta atividade
 %-----------------------------------
 
-traduz(l1, 'leva um missionário para a margem direita               ').
-traduz(l2, 'leva dois missionários para a margem direita            ').
-traduz(l3, 'leva um canibal para a margem direita                   ').
-traduz(l4, 'leva dois canibais para a margem direita                ').
-traduz(l5, 'leva um missionário e um canibal para a margem direita  ').
+traduz(l1, 'leva 1 missionário e 1 canibal para a margem direita').
+traduz(l2, 'leva 2 missionários para a margem direita           ').
+traduz(l3, 'leva 2 canibais para a margem direita               ').
+traduz(l4, 'leva 1 missionário para a margem direita            ').
+traduz(l5, 'leva 1 canibal para a margem direita                ').
 
-traduz(v1, 'volta um missionário para a margem esquerda             ').
-traduz(v2, 'volta dois missionários para a margem esquerda          ').
-traduz(v3, 'volta um canibal para a margem esquerda                 ').
-traduz(v4, 'volta dois canibais para a margem esquerda              ').
-traduz(v5, 'volta um missionário e um canibal para a margem esquerda').
+traduz(v1, 'volta 1 missionário e 1 canibal para a margem esquerda').
+traduz(v2, 'volta 2 missionários para a margem esquerda           ').
+traduz(v3, 'volta 2 canibais para a margem esquerda               ').
+traduz(v4, 'volta 1 missionário para a margem esquerda            ').
+traduz(v5, 'volta 1 canibal para a margem esquerda                ').
 
 %----EstadoInicial-----------------------------------------------------------------------------------%
 
@@ -132,14 +132,70 @@ meta([0,0,1]). % 0 missionarios e 0 canibais na margem esquerda com o bote na ma
 
 %-----Operações--------------------------------------------------------------------------------------%
 
-oper(l1, [M1,C,0], [M2,C,1]) :- M2 is (M1-1), M1 > 0. 
-oper(l2, [M1,C,0], [M2,C,1]) :- M2 is (M1-2), M1 > 1.
-oper(l3, [M,C1,0], [M,C2,1]) :- C2 is (C1-1), C1 > 0.
-oper(l4, [M,C1,0], [M,C2,1]) :- C2 is (C1-2), C1 > 1.
-oper(l5, [M1,C1,0], [M2,C2,1]) :- M2 is (M1-1), C2 is (C1-1), M1 > 0, C1 > 0.
+teste([M,C,_]) :- (M is C; M is 3; M is 0).
 
-oper(v1, [M1,C,1], [M2,C,0]) :- M2 is (M1+1), M1 < 3. 
-oper(v2, [M1,C,1], [M2,C,0]) :- M2 is (M1+2), M1 < 2.
-oper(v3, [M,C1,1], [M,C2,0]) :- C2 is (C1+1), C1 < 3.
-oper(v4, [M,C1,1], [M,C2,0]) :- C2 is (C1+2), C1 < 2.
-oper(v5, [M1,C1,1], [M2,C2,0]) :- M2 is (M1+1), C2 is (C1+1), M1 < 3, C1 < 3. 
+oper(l1, [M1,C1,B1], [M2,C2,B2]) :- 
+    M2 is (M1-1), 
+    C2 is (C1-1), 
+    M1 > 0, 
+    C1 > 0, 
+    B1 is 0, 
+    teste([M2,C2,B1]), 
+    B2 is 1.
+oper(l2, [M1,C,B1], [M2,C,B2]) :- 
+    M2 is (M1-2),
+    M1 > 1,
+    B1 is 0,
+    teste([M2,C,B1]),
+    B2 is 1.
+oper(l2, [M,C1,B1], [M,C2,B2]) :- 
+    C2 is (C1-2), 
+    C1 > 1,
+    B1 is 0,
+    teste([M,C2,B1]),
+    B2 is 1.
+oper(l4, [M1,C,B1], [M2,C,B2]) :- 
+    M2 is (M1-1), 
+    M1 > 0, 
+    B1 is 0,
+    teste([M2,C,B1]),
+    B2 is 1.
+oper(l5, [M,C1,B1], [M,C2,B2]) :- 
+    C2 is (C1-1), 
+    C1 > 0,
+    B1 is 0,
+    teste([M,C2,B1]),
+    B2 is 1.
+
+
+oper(v1, [M1,C1,B1], [M2,C2,B2]) :- 
+    M2 is (M1+1), 
+    C2 is (C1+1), 
+    M1 < 3, C1 < 3,
+    B1 is 1,
+    teste([M2,C2,B1]),
+    B2 is 0.
+oper(v2, [M1,C,B1], [M2,C,B2]) :- 
+    M2 is (M1+2), 
+    M1 < 2,
+    B1 is 1,
+    teste([M2,C,B1]),
+    B2 is 0.
+oper(v3, [M,C1,B1], [M,C2,B2]) :- 
+    C2 is (C1+2), 
+    C1 < 2, 
+    B1 is 1,
+    teste([M,C2,B1]),
+    B2 is 0.
+oper(v4, [M1,C,B1], [M2,C,B2]) :- 
+    M2 is (M1+1), 
+    M1 < 3, 
+    B1 is 1,
+    teste([M2,C,B1]),
+    B2 is 0. 
+oper(v5, [M,C1,B1], [M,C2,B2]) :-
+    C2 is (C1+1), 
+    C1 < 3, 
+    B1 is 1,
+    teste([M,C2,B1]),
+    B2 is 0.
