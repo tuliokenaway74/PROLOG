@@ -144,7 +144,7 @@ oper(l2, [M1,C,0], [M2,C,1]) :-
     M2 is (M1-2),
     M1 > 1,
     teste([M2,C]).
-oper(l2, [M,C1,0], [M,C2,1]) :- 
+oper(l3, [M,C1,0], [M,C2,1]) :- 
     C2 is (C1-2), 
     C1 > 1,
     teste([M,C2]).
