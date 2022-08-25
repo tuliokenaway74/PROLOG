@@ -1,7 +1,3 @@
-%------------------------------------------
-% Busca em largura/profundidade
-% Por Luiz Eduardo
-%------------------------------------------
 ap([],X,X).
 ap([A|B],C,[A|D]) :- ap(B,C,D).
 
