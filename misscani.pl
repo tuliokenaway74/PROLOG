@@ -132,70 +132,50 @@ meta([0,0,1]). % 0 missionarios e 0 canibais na margem esquerda com o bote na ma
 
 %-----Operações--------------------------------------------------------------------------------------%
 
-teste([M,C,_]) :- (M is C; M is 3; M is 0).
+teste([M,C]) :- (M is C; M is 3; M is 0).
 
-oper(l1, [M1,C1,B1], [M2,C2,B2]) :- 
+oper(l1, [M1,C1,0], [M2,C2,1]) :- 
     M2 is (M1-1), 
     C2 is (C1-1), 
     M1 > 0, 
     C1 > 0, 
-    B1 is 0, 
-    teste([M2,C2,B1]), 
-    B2 is 1.
-oper(l2, [M1,C,B1], [M2,C,B2]) :- 
+    teste([M2,C2]).
+oper(l2, [M1,C,0], [M2,C,1]) :- 
     M2 is (M1-2),
     M1 > 1,
-    B1 is 0,
-    teste([M2,C,B1]),
-    B2 is 1.
-oper(l2, [M,C1,B1], [M,C2,B2]) :- 
+    teste([M2,C]).
+oper(l2, [M,C1,0], [M,C2,1]) :- 
     C2 is (C1-2), 
     C1 > 1,
-    B1 is 0,
-    teste([M,C2,B1]),
-    B2 is 1.
-oper(l4, [M1,C,B1], [M2,C,B2]) :- 
+    teste([M,C2]).
+oper(l4, [M1,C,0], [M2,C,1]) :- 
     M2 is (M1-1), 
     M1 > 0, 
-    B1 is 0,
-    teste([M2,C,B1]),
-    B2 is 1.
-oper(l5, [M,C1,B1], [M,C2,B2]) :- 
+    teste([M2,C]).
+oper(l5, [M,C1,0], [M,C2,1]) :- 
     C2 is (C1-1), 
     C1 > 0,
-    B1 is 0,
-    teste([M,C2,B1]),
-    B2 is 1.
+    teste([M,C2]).
 
 
-oper(v1, [M1,C1,B1], [M2,C2,B2]) :- 
+oper(v1, [M1,C1,1], [M2,C2,0]) :- 
     M2 is (M1+1), 
     C2 is (C1+1), 
     M1 < 3, C1 < 3,
-    B1 is 1,
-    teste([M2,C2,B1]),
-    B2 is 0.
-oper(v2, [M1,C,B1], [M2,C,B2]) :- 
+    teste([M2,C2]).
+oper(v2, [M1,C,1], [M2,C,0]) :- 
     M2 is (M1+2), 
     M1 < 2,
-    B1 is 1,
-    teste([M2,C,B1]),
-    B2 is 0.
-oper(v3, [M,C1,B1], [M,C2,B2]) :- 
+    teste([M2,C]).
+oper(v3, [M,C1,1], [M,C2,0]) :- 
     C2 is (C1+2), 
     C1 < 2, 
-    B1 is 1,
-    teste([M,C2,B1]),
-    B2 is 0.
-oper(v4, [M1,C,B1], [M2,C,B2]) :- 
+    teste([M,C2]).
+oper(v4, [M1,C,1], [M2,C,0]) :- 
     M2 is (M1+1), 
     M1 < 3, 
-    B1 is 1,
-    teste([M2,C,B1]),
-    B2 is 0. 
-oper(v5, [M,C1,B1], [M,C2,B2]) :-
+    teste([M2,C]). 
+oper(v5, [M,C1,1], [M,C2,0]) :-
     C2 is (C1+1), 
     C1 < 3, 
-    B1 is 1,
-    teste([M,C2,B1]),
-    B2 is 0.
+    teste([M,C2]).
