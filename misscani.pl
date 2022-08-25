@@ -110,11 +110,11 @@ resolva :-
 % Especificacao da quarta atividade
 %-----------------------------------
 
-traduz(l1, 'leva 1 missionário e 1 canibal para a margem direita').
-traduz(l2, 'leva 2 missionários para a margem direita           ').
-traduz(l3, 'leva 2 canibais para a margem direita               ').
-traduz(l4, 'leva 1 missionário para a margem direita            ').
-traduz(l5, 'leva 1 canibal para a margem direita                ').
+traduz(l1, 'leva 1 missionário e 1 canibal para a margem direita  ').
+traduz(l2, 'leva 2 missionários para a margem direita             ').
+traduz(l3, 'leva 2 canibais para a margem direita                 ').
+traduz(l4, 'leva 1 missionário para a margem direita              ').
+traduz(l5, 'leva 1 canibal para a margem direita                  ').
 
 traduz(v1, 'volta 1 missionário e 1 canibal para a margem esquerda').
 traduz(v2, 'volta 2 missionários para a margem esquerda           ').
@@ -134,48 +134,14 @@ meta([0,0,1]). % 0 missionarios e 0 canibais na margem esquerda com o bote na ma
 
 teste([M,C]) :- (M is C; M is 3; M is 0).
 
-oper(l1, [M1,C1,0], [M2,C2,1]) :- 
-    M2 is (M1-1), 
-    C2 is (C1-1), 
-    M1 > 0, 
-    C1 > 0, 
-    teste([M2,C2]).
-oper(l2, [M1,C,0], [M2,C,1]) :- 
-    M2 is (M1-2),
-    M1 > 1,
-    teste([M2,C]).
-oper(l3, [M,C1,0], [M,C2,1]) :- 
-    C2 is (C1-2), 
-    C1 > 1,
-    teste([M,C2]).
-oper(l4, [M1,C,0], [M2,C,1]) :- 
-    M2 is (M1-1), 
-    M1 > 0, 
-    teste([M2,C]).
-oper(l5, [M,C1,0], [M,C2,1]) :- 
-    C2 is (C1-1), 
-    C1 > 0,
-    teste([M,C2]).
+oper(l1, [M1,C1,0], [M2,C2,1]) :- M2 is (M1-1), C2 is (C1-1), M1 > 0, C1 > 0, teste([M2,C2]).
+oper(l2, [M1,C,0], [M2,C,1]) :- M2 is (M1-2), M1 > 1, teste([M2,C]).
+oper(l3, [M,C1,0], [M,C2,1]) :- C2 is (C1-2), C1 > 1, teste([M,C2]).
+oper(l4, [M1,C,0], [M2,C,1]) :- M2 is (M1-1), M1 > 0, teste([M2,C]).
+oper(l5, [M,C1,0], [M,C2,1]) :- C2 is (C1-1), C1 > 0, teste([M,C2]).
 
-
-oper(v1, [M1,C1,1], [M2,C2,0]) :- 
-    M2 is (M1+1), 
-    C2 is (C1+1), 
-    M1 < 3, C1 < 3,
-    teste([M2,C2]).
-oper(v2, [M1,C,1], [M2,C,0]) :- 
-    M2 is (M1+2), 
-    M1 < 2,
-    teste([M2,C]).
-oper(v3, [M,C1,1], [M,C2,0]) :- 
-    C2 is (C1+2), 
-    C1 < 2, 
-    teste([M,C2]).
-oper(v4, [M1,C,1], [M2,C,0]) :- 
-    M2 is (M1+1), 
-    M1 < 3, 
-    teste([M2,C]). 
-oper(v5, [M,C1,1], [M,C2,0]) :-
-    C2 is (C1+1), 
-    C1 < 3, 
-    teste([M,C2]).
+oper(v1, [M1,C1,1], [M2,C2,0]) :- M2 is (M1+1), C2 is (C1+1), M1 < 3, C1 < 3, teste([M2,C2]).
+oper(v2, [M1,C,1], [M2,C,0]) :- M2 is (M1+2), M1 < 2, teste([M2,C]).
+oper(v3, [M,C1,1], [M,C2,0]) :- C2 is (C1+2), C1 < 2, teste([M,C2]).
+oper(v4, [M1,C,1], [M2,C,0]) :- M2 is (M1+1), M1 < 3, teste([M2,C]). 
+oper(v5, [M,C1,1], [M,C2,0]) :- C2 is (C1+1), C1 < 3, teste([M,C2]).
