@@ -54,6 +54,24 @@ resolva :-
 %-----------------------------------
 
 %-----------------------------------
+% Aspirador
+%-----------------------------------
+
+% traduz(entrarSala1, 'aspirador entrou na sala 1  ').
+% traduz(entrarSala2, 'aspirador entrou na sala 2 ').
+% traduz(aspirar, 'aspirando a sala atual').
+
+% inicial([1,1,1]).
+% meta([_,0,0]).
+
+% oper(entrarSala1, [2, Y , Z], [1, Y , Z]).
+% oper(entrarSala2, [1, Y , Z], [2, Y , Z]).
+% oper(aspirar, [2, Y , 1], [2, Y , 0]).
+% oper(aspirar, [1, 1, Z], [1, 0, Z]).
+
+%----------------------------------------------------------------------------------------------------%
+
+%-----------------------------------
 % Jarros
 %-----------------------------------
 
@@ -75,6 +93,35 @@ resolva :-
 % oper(12, [X,Y], [X1,4]) :- X > 0, Y < 4, X1 is X + Y - 4, X + Y > 4.
 % oper(21, [X,Y], [X1,0]) :- Y > 0, X < 3, X1 is X + Y, X1 =< 3.
 % oper(21, [X,Y], [3,Y1]) :- Y > 0, X < 3, Y1 is X + Y - 3, X + Y > 3.
+
+%----------------------------------------------------------------------------------------------------%
+
+%-----------------------------------
+% 3 Jarros
+%-----------------------------------
+
+% traduz(t1p2, 'transfere do jarro 1 para o jarro 2  ').
+% traduz(t1p3, 'transfere do jarro 1 para o jarro 3  ').
+% traduz(t2p1, 'transfere do jarro 2 para o jarro 1').
+% traduz(t2p3, 'transfere do jarro 2 para o jarro 3').
+% traduz(t3p1, 'transfere do jarro 3 para o jarro 1   ').
+% traduz(t3p2, 'transfere do jarro 3 para o jarro 2   ').
+
+% inicial([8,0,0]).
+% meta([4,4,_]).
+
+% oper(t1p2, [X,Y,Z],[0,Y1,Z]) :- X > 0, Y < 5, Y1 is X + Y, Y1 =< 5.
+% oper(t1p2, [X,Y,Z],[X1,5,Z]) :- X > 0, Y < 5, X1 is X + Y - 5, X + Y > 5.
+% oper(t2p1, [X,Y,Z],[X1,0,Z]) :- Y > 0, X < 8, X1 is X + Y, X1 =< 8.
+% oper(t2p1, [X,Y,Z],[8,Y1,Z]) :- Y > 0, X < 8, Y1 is X + Y - 8, X + Y > 8.
+% oper(t1p3, [X,Y,Z],[0,Y,Z1]) :- X > 0, Z < 3, Z1 is X + Z, Z1 =< 3.
+% oper(t1p3, [X,Y,Z],[X1,Y,3]) :- X > 0, Z < 3, X1 is X + Z - 3, X + Z > 3.
+% oper(t3p1, [X,Y,Z],[X1,Y,0]) :- Z > 0, X < 8, X1 is X + Z, X1 =< 8.
+% oper(t3p1, [X,Y,Z],[8,Y,Z1]) :- Z > 0, X < 8, Z1 is X + Z - 8, X + Z > 8.
+% oper(t2p3, [X,Y,Z],[X,0,Z1]) :- Y > 0, Z < 3, Z1 is Y + Z, Z1 =< 3.
+% oper(t2p3, [X,Y,Z],[X,Y1,3]) :- Y > 0, Z < 3, Y1 is Z + Y - 3, Z + Y > 3.
+% oper(t3p2, [X,Y,Z],[X,Y1,0]) :- Z > 0, Y < 5, Y1 is Y + Z, Y1 =< 5.
+% oper(t3p2, [X,Y,Z],[X,5,Z1]) :- Z > 0, Y < 5, Z1 is Z + Y - 5, Z + Y > 5.
 
 %----------------------------------------------------------------------------------------------------%
 
@@ -107,7 +154,7 @@ resolva :-
 %----------------------------------------------------------------------------------------------------%
 
 %-----------------------------------
-% Especificacao da quarta atividade
+% Canibais
 %-----------------------------------
 
 traduz(l1, 'leva 1 missionário e 1 canibal para a margem direita  ').
